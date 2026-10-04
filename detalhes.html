@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ao redor do mundo | Detalhes</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="index.html">✈️ Ao redor do mundo</a>
+    <nav>
+      <a href="index.html">Início</a>
+      <a class="active" href="detalhes.html#annecy">Destinos</a>
+      <a href="autor.html">Sobre o autor</a>
+    </nav>
+  </header>
+
+  <main class="details-page">
+    <section class="details-card">
+      <div id="destinationImage" class="details-image annecy">🏔️</div>
+      <div class="details-content">
+        <span id="country" class="tag">🇫🇷 Alta Saboia, França</span>
+        <h1 id="title">Annecy</h1>
+        <p id="description">Entre canais floridos e um lago aos pés dos Alpes, Annecy é conhecida como a cidade romântica de Veneza dos Alpes.</p>
+
+        <div class="info-grid">
+          <div><strong>📅 Quando ir</strong><span id="when">Maio a setembro</span></div>
+          <div><strong>⏱️ Tempo sugerido</strong><span id="time">2 a 3 dias</span></div>
+        </div>
+
+        <h2>O que fazer por lá</h2>
+        <ul id="activities">
+          <li>Passear pela cidade antiga.</li>
+          <li>Aproveitar o Lago de Annecy.</li>
+          <li>Explorar os Alpes.</li>
+          <li>Conhecer os canais e pontes.</li>
+        </ul>
+
+        <a class="button" href="index.html">← Voltar para destinos</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Amanda Lopes Medina</p>
+    <a href="autor.html">Sobre o autor →</a>
+  </footer>
+
+  <script>
+    const destinos = {
+      annecy: {
+        country: "🇫🇷 Alta Saboia, França",
+        title: "Annecy",
+        description: "Entre canais floridos e um lago aos pés dos Alpes, Annecy é conhecida como a cidade romântica de Veneza dos Alpes.",
+        when: "Maio a setembro",
+        time: "2 a 3 dias",
+        icon: "🏔️",
+        cls: "annecy",
+        activities: ["Passear pela cidade antiga.", "Aproveitar o Lago de Annecy.", "Explorar os Alpes.", "Conhecer os canais e pontes."]
+      },
+      rio: {
+        country: "🇧🇷 Rio de Janeiro, Brasil",
+        title: "Rio de Janeiro",
+        description: "Uma das cidades mais famosas do Brasil, com praias, montanhas, natureza e uma cultura vibrante.",
+        when: "Dezembro a março",
+        time: "3 a 5 dias",
+        icon: "🌊",
+        cls: "rio",
+        activities: ["Visitar o Cristo Redentor.", "Conhecer Copacabana e Ipanema.", "Passear pelo Pão de Açúcar.", "Aproveitar a gastronomia local."]
+      },
+      paris: {
+        country: "🇫🇷 Île-de-France, França",
+        title: "Paris",
+        description: "A capital francesa reúne história, arte, arquitetura e gastronomia em alguns dos lugares mais conhecidos do mundo.",
+        when: "Abril a junho",
+        time: "3 a 5 dias",
+        icon: "🗼",
+        cls: "paris",
+        activities: ["Visitar a Torre Eiffel.", "Conhecer o Museu do Louvre.", "Passear às margens do Sena.", "Explorar Montmartre."]
+      }
+    };
+
+    function carregarDestino() {
+      const chave = location.hash.replace("#", "") || "annecy";
+      const d = destinos[chave] || destinos.annecy;
+      document.getElementById("country").textContent = d.country;
+      document.getElementById("title").textContent = d.title;
+      document.getElementById("description").textContent = d.description;
+      document.getElementById("when").textContent = d.when;
+      document.getElementById("time").textContent = d.time;
+      const img = document.getElementById("destinationImage");
+      img.className = "details-image " + d.cls;
+      img.textContent = d.icon;
+      document.getElementById("activities").innerHTML = d.activities.map(x => `<li>${x}</li>`).join("");
+      document.title = `Ao redor do mundo | ${d.title}`;
+    }
+    window.addEventListener("hashchange", carregarDestino);
+    carregarDestino();
+  </script>
+</body>
+</html>
